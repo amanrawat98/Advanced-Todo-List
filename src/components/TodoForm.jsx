@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo, updateTodo, updateValue } from "../features/todoSlice";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
+import { decodeJWT } from "../utils/jwtUtils";
 
 const TodoForm = ({
   title,
@@ -20,9 +21,11 @@ const TodoForm = ({
   const todos = useSelector((state) => state.todos.todos || []);
   const StateUpdate = useSelector((state) => state.todos.StateUpdate);
   const [cols, setcols] = useState(40);
+  const [userEmail, setUserEmail] = useState("");
 
   const handleDateTime = (value) => {
-    if (value && value._isValid) {        // Check if value is a moment object
+    if (value && value._isValid) {
+      // Check if value is a moment object
 
       setDueDate(value.toDate()); // Convert moment object to Date object
     } else {
@@ -31,6 +34,17 @@ const TodoForm = ({
   };
 
   useEffect(() => {
+    const userToken = localStorage.getItem("token"); //get token from local storage
+    if (!userToken) return;
+    try {
+      let value = decodeJWT(userToken);
+      const { email } = value;
+      console.log(value);
+      setUserEmail(email);
+    } catch (error) {
+      console.log(error);
+    }
+
     const windowResizing = () => {
       if (window.innerWidth < 768) {
         setcols(25);
@@ -52,8 +66,7 @@ const TodoForm = ({
 
     const formattedDate = dueDate
       ? new Date(dueDate).toString()
-      : new Date().toString()  ;
-
+      : new Date().toString();
 
     if (StateUpdate) {
       const updatedValue = {
@@ -80,6 +93,7 @@ const TodoForm = ({
         dueDate: formattedDate,
         priority,
         status: "pending",
+        userEmail
       };
       dispatch(addTodo(newTodo));
     }

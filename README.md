@@ -1,8 +1,16 @@
-# React + Vite
+Step 1: Install Node Js in Vs Code.
+Step 2: Download Zip file and extract the file.
+Step 3: Now go to vs code and open the downloaded folder.
+Step 4: Now Open Vs terminal and use npm install Command.
+Step 5: Now use npm run dev command. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Functionality Added**:-
+1. Can Add, Delete, Update Todo Items with todo status, Priority and Due Date.
+2. Can filter todos based on filters like todo status, Priority and Due Date.
+3. Can Mark todo status as Completed or Pending.
+4. Sigup, Signin And Lougut Functionality using JWTDecode Library.
+5. Implemented Drag and Drop todos using DnD Library.
+6. Added Dark Mode.
+7. Send DueDate notification to Users (If Less Then 6 hrs are Left for Todo Duedate).
+8. Used LocalStorage with Redux Toolkit to Save Application State over Reload.

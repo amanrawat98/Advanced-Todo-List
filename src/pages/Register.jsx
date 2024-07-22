@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = (e)=> {
     e.preventDefault();
     dispatch(AddNewUser(input))
-    navigate('/login');
+    navigate('/');
 
   }
 
@@ -63,7 +63,7 @@ const Register = () => {
           Submit
         </button>
 
-        <button type="submit" className="btn btn-primary extratyle" onClick={()=> navigate('/login') } >
+        <button type="submit" className="btn btn-primary extratyle" onClick={()=> navigate('/') } >
           Login
         </button>
       </form>

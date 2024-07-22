@@ -39,8 +39,8 @@ const Login = () => {
 
       <h2>Login </h2>
       <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label htmlFor="email" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
             Email address
           </label>
           <input
@@ -52,8 +52,8 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div class="mb-3">
-          <label htmlFor="password" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input
@@ -65,13 +65,13 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
 
         <button
           type="submit"
-          class="btn btn-primary extratyle "
+          className="btn btn-primary extratyle "
           onClick={() => navigate("/register")}
         >
           Register

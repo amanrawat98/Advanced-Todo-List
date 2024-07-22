@@ -13,7 +13,7 @@ const ThemeModeChange = () => {
 
   const logout = () => {
     deleteToken("token");
-    navigate("/login");
+    navigate("/");
   };
 
   return (

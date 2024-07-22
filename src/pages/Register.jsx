@@ -27,13 +27,13 @@ const Register = () => {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
 
-        <div class="mb-3">
-          <label htmlFor="email" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
             Email address
           </label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="email"
             aria-describedby="emailHelp"
             name="email"
@@ -43,13 +43,13 @@ const Register = () => {
             }
           />
         </div>
-        <div class="mb-3">
-          <label htmlFor="password" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
             Password
           </label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="password"
             name="password"
             value={input.password}
@@ -59,11 +59,11 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
 
-        <button type="submit" class="btn btn-primary extratyle" onClick={()=> navigate('/login') } >
+        <button type="submit" className="btn btn-primary extratyle" onClick={()=> navigate('/login') } >
           Login
         </button>
       </form>

@@ -42,7 +42,6 @@ const TodoList = (props) => {
     try {
       let value = decodeJWT(userToken);
       const { email } = value;
-      console.log(value);
       setUserEmail(email);
     } catch (error) {
       console.log(error);

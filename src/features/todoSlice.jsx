@@ -1,4 +1,3 @@
-// src/features/todoSlice.jsx
 import { arrayMove } from "@dnd-kit/sortable";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -8,6 +7,7 @@ const initialState = {
   StateUpdate: false,
   ThemeMode: false,
   ThemeValue: "light",
+  userEmail: '',
 };
 
 const todoSlice = createSlice({
@@ -67,6 +67,12 @@ const todoSlice = createSlice({
       ...state.todos[matchTodoItemIndex], ...updatedData         
      }
     },
+
+    handleUserEmail: (state, action)=> {
+    state.userEmail = action.payload;
+    },
+
+   
   },
 });
 
@@ -81,7 +87,8 @@ export const {
   updateThemeMode,
   updateThemeValue,
   updateValue,
-  updateTodoStatus
+  updateTodoStatus,
+  handleUserEmail,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

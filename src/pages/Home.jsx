@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import ThemeMode from "../components/ThemeMode";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const ThemeValue = useSelector((state) => state.todos.ThemeValue);
+  const userEmail = useSelector((state) => state.todos.userEmail);
   const todos = useSelector((state) => state.todos.todos || []);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState(new Date());
@@ -18,6 +18,8 @@ const Home = () => {
   const [updateItemIndex, setUpdateItemIndex] = useState(null);
   const [updateItem, setUpdateItem] = useState(false);
 
+  const dispatch = useDispatch();
+  
   const notify = (message) => toast(message);
 
   const propsContainer = {
@@ -37,12 +39,13 @@ const Home = () => {
 
   const minTime = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
 
+ 
   useEffect(() => {
     const checkDueDates = () => {
       if (todos.length > 0 || todos !== undefined) {
         // Run forEach only After Todos are not Empty
         todos.forEach((item) => {
-          if (item.dueDate && item.status === "pending") {
+          if (item.dueDate && item.status === "pending" && item.userEmail === userEmail) {
             const dueDate = new Date(item.dueDate);
             const timeLeft = dueDate.getTime() - Date.now();
             if (dueDate.getTime() > Date.now() && timeLeft < minTime) {

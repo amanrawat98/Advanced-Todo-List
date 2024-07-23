@@ -1,4 +1,3 @@
-// src/components/TodoList.jsx
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TodoItem from "./TodoItem";
@@ -25,10 +24,11 @@ import { decodeJWT } from "../utils/jwtUtils";
 
 const TodoList = (props) => {
   const todos = useSelector((state) => state.todos.todos);
+  const useremail = useSelector((state) => state.todos.userEmail);
+
   const dispatch = useDispatch();
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [userEmail, setUserEmail] = useState("");
-  const [filteredItemsByEmail, setFilteredItemsByEmail] = useState([]);
 
   const [localFilters, setLocalFilters] = useState({
     status: "all",
@@ -48,16 +48,16 @@ const TodoList = (props) => {
     }
   }, []);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     const filterVal = todos.filter((item) => {
       return item.userEmail === userEmail;
     });
 
     setFilteredItemsByEmail(filterVal);
-  }, [todos, userEmail]);
+  }, [todos, userEmail]);   */
 
   useEffect(() => {
-    const filtered = filteredItemsByEmail?.filter((todo) => {
+    const filtered = todos?.filter((todo) => {
       const { status, priority, dueDate } = localFilters;
 
       if (status !== "all" && todo.status !== status) {
@@ -69,11 +69,16 @@ const TodoList = (props) => {
       if (dueDate && todo.dueDate !== dueDate) {
         return false;
       }
+
+      if (todo.userEmail !== useremail) {
+        return false;
+      }
+
       return true;
     });
 
     setFilteredTodos(filtered);
-  }, [localFilters,filteredItemsByEmail]);
+  }, [localFilters, todos]);
 
   const handleClearFilters = () => {
     setLocalFilters({
